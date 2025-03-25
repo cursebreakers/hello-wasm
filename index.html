@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, WASM!</title>
+</head>
+<body>
+    <script type="module">
+
+        import init from './pkg/hello_wasm.js';
+
+        async function runWasm() {
+            try {
+                // Initialize the WebAssembly module
+                const wasm = await init();  // Awaiting the init function
+                console.log(wasm);
+
+                wasm.run();  // Call the `run` function exposed by wasm-bindgen
+            } catch (err) {
+                console.error("Error initializing WASM:", err);
+            }
+        }
+
+        runWasm();
+    </script>
+</body>
+</html>
+
